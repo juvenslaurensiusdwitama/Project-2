@@ -97,6 +97,7 @@ const showQuestion = () =>{
 
 const resetState = () =>{
     nextBtn.style.display = 'none'
+    
 }
 
 startQuiz()
