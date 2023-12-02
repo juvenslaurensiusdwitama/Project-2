@@ -20,10 +20,10 @@ const questions = [
     {
         question: 'Hewan terlambat di dunia?',
         answers: [
-            {text: 'Sloth', correct: true},
+            {text: 'Kungkang (Sloth)', correct: true},
             {text: 'Cheetah', correct: false},
-            {text: 'Tiger', correct: false},
-            {text: 'Dog', correct: false},
+            {text: 'Harimau', correct: false},
+            {text: 'Kucing', correct: false},
         ]
     },
     {
@@ -39,8 +39,8 @@ const questions = [
         question: 'Legenda basket dunia?',
         answers: [
             {text: 'Kyrie Irving', correct: false},
-            {text: 'Michael Jordan', correct: false},
-            {text: 'Stephen Curry', correct: true},
+            {text: 'Stephen Curry', correct: false},
+            {text: 'Michael Jordan', correct: true},
             {text: 'James Harden', correct: false},
         ]
     },
@@ -54,8 +54,8 @@ let score = 0
 let currentIndexQ = 0
 
 const startQuiz = () =>{
-    let score = 0
-    let currentIndexQ = 0
+    score = 0
+    currentIndexQ = 0
     nextBtn.innerHTML = 'Next'
     showQuestion()
 }
@@ -79,25 +79,45 @@ const showQuestion = () =>{
             if(e.target.dataset.correct){
                 e.target.classList.add('correct')
                 score++
-                alert('Your answer is correct!')              
+                alert('Your answer is correct!')
             }else{
                 e.target.classList.add('wrong')
                 alert('Your answer is wrong!')              
             }
-            Array.from(answerButtonGroup.children).forEach(button =>{
-                if(button.dataset.correct){
-                    button.classList.add('correct')
-                }
-                button.disabled = true
+            Array.from(answerButtonGroup.children).forEach(btn =>{
+                btn.disabled = true
             })
             nextBtn.style.display = 'block'
         })
     })
 }
 
+const handleNext = ()=>{
+    currentIndexQ++
+    if(currentIndexQ < questions.length){
+        showQuestion()
+    }else{
+        questionElement.innerHTML = `You score ${score} out of ${questions.length}`
+        Array.from(answerButtonGroup.children).forEach(btn=>{
+            btn.remove()
+        })
+        nextBtn.innerHTML = 'Play Again!'
+    }
+}
+
+nextBtn.addEventListener('click', ()=>{
+    if(currentIndexQ < questions.length){
+        handleNext()
+    }else{
+        startQuiz()
+    }
+})
+
 const resetState = () =>{
     nextBtn.style.display = 'none'
-    
+    while(answerButtonGroup.firstChild){
+        answerButtonGroup.firstChild.remove()
+    }
 }
 
 startQuiz()
