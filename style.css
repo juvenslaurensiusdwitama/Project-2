@@ -6,6 +6,7 @@
 }
 body{
     background-color: rgb(26, 26, 75);
+    /* color: rgb(60, 187, 22) */
 }
 
 #app{
@@ -28,7 +29,7 @@ body{
 #container h2{
     padding: 7px 0px;
 }
-.next-ctn{
+.next{
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -60,8 +61,8 @@ body{
     color: rgb(247, 247, 247);
 }
 
-#next{
-    display: inline;
+#next-button{
+    display: none;
     cursor: pointer;
     font-size: 17px;
     width: 66px;
@@ -71,7 +72,17 @@ body{
     border: 1px solid rgba(53, 50, 50, 0.733);
     transition: 0.2s;
 }
-#next:hover{
+#next-button:hover{
     background-color: rgb(12, 32, 54);
     color: rgb(247, 247, 247);
+}
+
+.wrong,.correct{
+    color : #fff;
+}
+.wrong{
+    background-color : rgb(189, 37, 37);
+}
+.correct{
+    background-color : rgb(60, 187, 22);
 }
